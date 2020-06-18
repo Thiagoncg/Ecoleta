@@ -20,7 +20,9 @@ const Home = () => {
           </h1>
 
           <p>
-            Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.
+            Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente. 
+            Cadastre aqui o seu ponto de coleta de reciclaveis 
+            ou resíduos orgânicos e permita que todos o encontrem.
           </p>
 
           <Link to="/create-point">
