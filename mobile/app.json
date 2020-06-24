@@ -1,11 +1,10 @@
 {
   "expo": {
-    "name": "mobile",
+    "name": "Ecoleta",
     "slug": "mobile",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,7 +21,13 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.StudiosCriar.Ecoleta",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.StudiosCriar.Ecoleta",
+      "versionCode": 1
     }
   }
 }

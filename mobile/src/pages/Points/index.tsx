@@ -19,13 +19,13 @@ const Points = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
-  const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]); 
+  const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
   const navigation = useNavigation();
 
   useEffect(() => {
-    async function loadPosition ( ) {
+    async function loadPosition() {
 
-      const { status } = await Location.requestPermissionsAsync();      
+      const { status } = await Location.requestPermissionsAsync();
 
       if (status !== 'granted') {
         Alert.alert('Ooops...', 'Precisamos de sua permissão para obter a sua localização');
@@ -64,14 +64,14 @@ const Points = () => {
   function handleSelectItem(id: number) {
     const alreadySelected = selectedItems.findIndex(item => item === id);
 
-    if (alreadySelected >= 0 ) {
+    if (alreadySelected >= 0) {
       const filteredItems = selectedItems.filter(item => item !== id);
 
       setSelectedItems(filteredItems);
     } else {
-    setSelectedItems([ ...selectedItems, id]);
+      setSelectedItems([...selectedItems, id]);
     }
-    
+
   }
 
 
@@ -89,14 +89,14 @@ const Points = () => {
 
         <View style={styles.mapContainer}>
           {initialPosition[0] !== 0 && (
-                      <MapView style={styles.map} loadingEnabled={initialPosition[0] === 0} initialRegion={{ latitude: initialPosition[0], longitude: initialPosition[1], latitudeDelta: 0.014, longitudeDelta: 0.014 }}>
-                      <Marker style={styles.mapMarker} onPress={handleNavigateToDetail} coordinate={{ latitude: -27.2092052, longitude: -49.6401092 }}>
-                        <View style={styles.mapMarkerContainer}>
-                          <Image style={styles.mapMarkerImage} source={{ uri: 'https://images.unsplash.com/photo-1501523460185-2aa5d2a0f981?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60' }} />
-                          <Text style={styles.mapMarkerTitle}>Local de Coleta</Text>
-                        </View>
-                      </Marker>
-                    </MapView>
+            <MapView style={styles.map} loadingEnabled={initialPosition[0] === 0} initialRegion={{ latitude: initialPosition[0], longitude: initialPosition[1], latitudeDelta: 0.014, longitudeDelta: 0.014 }}>
+              <Marker style={styles.mapMarker} onPress={handleNavigateToDetail} coordinate={{ latitude: -21.2066372, longitude: -47.8328526 }}>
+                <View style={styles.mapMarkerContainer}>
+                  <Image style={styles.mapMarkerImage} source={{ uri: 'https://images.unsplash.com/photo-1501523460185-2aa5d2a0f981?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60' }} />
+                  <Text style={styles.mapMarkerTitle}>Local de Coleta</Text>
+                </View>
+              </Marker>
+            </MapView>
           )}
 
         </View>
@@ -106,18 +106,18 @@ const Points = () => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20 }}>
 
           {items.map(item => (
-                      <TouchableOpacity 
-                      key={String(item.id)} 
-                      style={[
-                        styles.item, 
-                        selectedItems.includes(item.id) ? styles.selectedItem : {}
-                        ]} 
-                        onPress={() => handleSelectItem(item.id)}
-                        activeOpacity={0.6}
-                        >
-                      <SvgUri width={42} height={42} uri={item.image_url} />
-                      <Text style={styles.itemTitle}>{item.title}</Text>
-                    </TouchableOpacity>
+            <TouchableOpacity
+              key={String(item.id)}
+              style={[
+                styles.item,
+                selectedItems.includes(item.id) ? styles.selectedItem : {}
+              ]}
+              onPress={() => handleSelectItem(item.id)}
+              activeOpacity={0.6}
+            >
+              <SvgUri width={42} height={42} uri={item.image_url} />
+              <Text style={styles.itemTitle}>{item.title}</Text>
+            </TouchableOpacity>
           ))}
         </ScrollView>
       </View>
